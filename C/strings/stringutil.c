@@ -1,11 +1,12 @@
 #ifndef STRINGUTIL_C
 #define STRINGUTIL_C
 #include <stdlib.h>
+#include <string.h>
 #include <ctype.h>
 #include <stdbool.h>
 
 #pragma region INTERFACE
-bool verifyValidBuffer(char *str); // Verify if the buffer is a valid string to manipulate.
+bool isValidString(const char *str); // Verify if the buffer is a valid string to manipulate.
 void toLowerString(char *str);     // Put a string to lowerCase
 void toUpperString(char *str);     // Put a string to uppercase
 char *trim(char *str);             // Do a trim in a string
@@ -14,7 +15,7 @@ char *trim(char *str);             // Do a trim in a string
 
 #pragma region IMPLEMENTATION
 
-bool verifyValidBuffer(char *str)
+bool isValidString(const char *str)
 {
     if (str == NULL || str[0] == "\0")
     {
@@ -23,10 +24,9 @@ bool verifyValidBuffer(char *str)
 
     return true;
 }
-
 void toLowerString(char *str)
 {
-    if (verifyValidBuffer(str))
+    if (isValidString(str))
     {
         static int i = 0;
 
@@ -39,7 +39,7 @@ void toLowerString(char *str)
 void toUpperString(char *str)
 {
 
-    if (verifyValidBuffer(str))
+    if (isValidString(str))
     {
         static int i = 0;
 
@@ -77,7 +77,6 @@ char *trim(char *str)
 
     return str;
 }
-
 
 #pragma endregion IMPLEMENTATION
 #endif
